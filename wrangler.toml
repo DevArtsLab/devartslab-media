@@ -1,0 +1,15 @@
+name = "devartslab-media"
+main = "src/worker.js"
+compatibility_date = "2026-11-16"
+workers_dev = false
+
+routes = [
+  { pattern = "media.devartslab.com/*", zone_name = "devartslab.com" },
+]
+
+[vars]
+BRAND_NAME = "DevArts Lab"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "devartslab-media"

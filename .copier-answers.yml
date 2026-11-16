@@ -1,0 +1,19 @@
+# Changes here will be overwritten by copier.
+_commit: 2b7b538
+_src_path: https://github.com/DevArtsLab/project-blueprint.git
+contact_email: contact@devartslab.com
+foundation_repo: foundation
+github_org: DevArtsLab
+has_db: false
+has_docs: false
+has_web: false
+has_worker: false
+license_holder: DevArts Lab
+one_line_description: "Media asset host: public R2 bucket plus Worker serving share
+  links with noindex headers."
+org_domain: devartslab.com
+org_name: DevArts Lab
+secrets: []
+security_email: security@devartslab.com
+slug: devartslab-media
+tracker: Linear
