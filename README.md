@@ -4,12 +4,13 @@
 
 DevArts Lab project. Agent conventions: [AGENTS.md](AGENTS.md).
 
-Shareable file host for marketing assets (videos, images, documents)
+Shareable host for DevArts Lab marketing assets (videos, images, documents)
 distributed by link instead of uploaded to each external platform.
 
-## Setup
+## Endpoints
 
-- bash scripts/bootstrap.sh
+- `https://media.devartslab.com/<key>` (production)
+- `https://pub-8ef1b37e0d934faf8c2077bcfad63642.r2.dev/<key>` (testing)
 
 ## Behavior
 
@@ -19,46 +20,30 @@ distributed by link instead of uploaded to each external platform.
 - HTTP range and conditional requests pass through (video scrubbing works).
 - No directory listing; an object exists only to whoever has its URL.
 
-## Deploy for your org
-
-All org-specific values live in `wrangler.toml`. Edit four fields:
-
-| Field                      | What to set                               |
-| -------------------------- | ----------------------------------------- |
-| `name`                     | Worker name                               |
-| `routes[].pattern`         | Your hostname, e.g. `media.example.com/*` |
-| `routes[].zone_name`       | Your zone, e.g. `example.com`             |
-| `BRAND_NAME`               | Text served at `/`                        |
-| `r2_buckets[].bucket_name` | R2 bucket name                            |
-
-Then:
-
-```
-npx wrangler r2 bucket create <bucket-name>
-npx wrangler deploy
-npx wrangler r2 bucket dev-url enable <bucket-name>
-```
-
-`dev-url enable` gives a `pub-*.r2.dev` URL for testing before the custom
-domain is ready.
-
 ## Upload and share
 
-Dashboard: Cloudflare > R2 > `<bucket>` > Upload.
+Dashboard: Cloudflare > R2 > `devartslab-media` > Upload.
 
 CLI (the `--remote` flag is required; without it wrangler writes to local
 simulation state):
 
 ```
-npx wrangler r2 object put <bucket>/<key> --file <local-path> --remote
+npx wrangler r2 object put devartslab-media/<key> --file <local-path> --remote
 ```
 
-Share link: `https://<your-domain>/<key>`.
+Share link: `https://media.devartslab.com/<key>`.
 
-## DevArts Lab deployment
+## Setup
 
-- `https://media.devartslab.com/<key>` (production)
-- `https://pub-8ef1b37e0d934faf8c2077bcfad63642.r2.dev/<key>` (testing)
+- bash scripts/bootstrap.sh
+
+## Ship
+
+- npx wrangler deploy
+
+Forking for another org: edit `name`, `routes[].pattern`, `routes[].zone_name`,
+`BRAND_NAME`, `r2_buckets[].bucket_name` in `wrangler.toml`, create the bucket,
+deploy. Full pattern: foundation repo, `guides/media-asset-hosting.md`.
 
 ## Support
 
