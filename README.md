@@ -43,7 +43,7 @@ Share link: `https://media.devartslab.com/<key>`.
 
 Forking for another org: edit `name`, `routes[].pattern`, `routes[].zone_name`,
 `BRAND_NAME`, `r2_buckets[].bucket_name` in `wrangler.toml`, create the bucket,
-deploy. Full pattern: foundation repo, `guides/media-asset-hosting.md`.
+deploy. Full pattern: [foundation/guides/media-asset-hosting.md](https://github.com/DevArtsLab/foundation/blob/v1/guides/media-asset-hosting.md).
 
 ## Support
 
